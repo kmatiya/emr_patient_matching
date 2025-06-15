@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c5eb8b0-b8c7-454b-a96f-856f97dc0d33" name="Changes" comment="Update features to include regimen match score and height match score">
+    <list default="true" id="9c5eb8b0-b8c7-454b-a96f-856f97dc0d33" name="Changes" comment="First Commit of EMR patient matching with logistic, xboost and random forest">
+      <change afterPath="$PROJECT_DIR$/match_new_patients.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_rapidfuzz_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_rapidfuzz_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logistic_patient_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_patient_match.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_forest_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rf_patient_match_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/rf_patient_match_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xboost_model_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/xboost_model_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xboost_patient_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/xboost_patient_match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgb_patient_match_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/xgb_patient_match_model.pkl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kmatiya&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kmatiya/emr_patient_matching.git&quot;,
+    &quot;accountId&quot;: &quot;1cbf7ea4-ab52-464f-8327-7d46664fffe0&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -48,8 +63,8 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.xboost_patient_match">
-    <configuration name="main_rapidfuzz" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.logistic_patient_match">
+    <configuration name="logistic_patient_match" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="patient_matching" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,7 +77,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_rapidfuzz.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/logistic_patient_match.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -85,6 +100,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_rapidfuzz_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="random_forest_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="patient_matching" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/random_forest_training.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,10 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.logistic_patient_match" />
         <item itemvalue="Python.xboost_patient_match" />
-        <item itemvalue="Python.main_rapidfuzz_2" />
+        <item itemvalue="Python.random_forest_training" />
         <item itemvalue="Python.xboost_model_test" />
-        <item itemvalue="Python.main_rapidfuzz" />
+        <item itemvalue="Python.main_rapidfuzz_2" />
       </list>
     </recent_temporary>
   </component>
@@ -170,11 +208,20 @@
       <option name="project" value="LOCAL" />
       <updated>1749880688983</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First Commit of EMR patient matching with logistic, xboost and random forest">
+      <option name="closed" value="true" />
+      <created>1749894244306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749894244306</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update features to include regimen match score and height match score" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update features to include regimen match score and height match score" />
+    <MESSAGE value="First Commit of EMR patient matching with logistic, xboost and random forest" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Commit of EMR patient matching with logistic, xboost and random forest" />
   </component>
 </project>

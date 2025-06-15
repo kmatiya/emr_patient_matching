@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_auc_score
 import joblib
 
-# 1. Load data
+# 1. Load labeled data
 df = pd.read_csv('../output/matched_patients_verified.csv')
 
 # 2. Preprocessing
@@ -13,18 +13,17 @@ df['matched'] = df['matched'].map({'yes': 1, 'no': 0})  # encode target
 df['birthdate_1'] = pd.to_datetime(df['birthdate_1'], errors='coerce')
 df['birthdate_2'] = pd.to_datetime(df['birthdate_2'], errors='coerce')
 
-# --- Feature engineering ---
-# Fuzzy birthdate match (already computed if imported), but ensure consistency
+# Fuzzy birthdate match
 df['birthdate_match'] = (df['birthdate_1'] == df['birthdate_2']).astype(int)
 
-# Fill NaNs for numerical features to prevent model errors
+# Fill missing values
 df['height_match_score'] = df['height_match_score'].fillna(0)
-df['height_min_diff'] = df['height_min_diff'].fillna(100)  # large default to show mismatch
+df['height_min_diff'] = df['height_min_diff'].fillna(100)
 df['regimen_match_score'] = df['regimen_match_score'].fillna(0)
 df['first_name_sim'] = df['first_name_sim'].fillna(0)
 df['last_name_sim'] = df['last_name_sim'].fillna(0)
 
-# 3. Features and target
+# 3. Define features and target
 features = [
     'score',
     'first_name_sim',
@@ -58,3 +57,13 @@ print(f"AUC: {roc_auc_score(y_test, y_proba):.4f}")
 # 7. Save model
 joblib.dump(model, 'xgb_patient_match_model.pkl')
 print("✅ Model saved as xgb_patient_match_model.pkl")
+
+# 8. Optional: Apply model to full dataset (e.g., df_features in production)
+# If you have new pairs to score, do this:
+
+# new_pairs = pd.read_csv('new_pairs.csv')  # Example new input
+# Preprocess and feature engineer new_pairs exactly as above...
+# probs = model.predict_proba(new_pairs[features])[:, 1]
+# new_pairs['match_proba'] = probs
+# new_pairs['matched'] = (new_pairs['match_proba'] >= 0.7).astype(int)
+# new_pairs.to_csv('new_matched_output.csv', index=False)
